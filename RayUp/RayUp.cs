@@ -1,10 +1,10 @@
 ﻿namespace RayUp
 {
-    class RayUp
+  class RayUp
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
 
-        }
     }
+  }
 }
