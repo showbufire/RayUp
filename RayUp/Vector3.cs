@@ -17,6 +17,44 @@
       this.z = z;
     }
 
+    #region accessors
+    public double r
+    {
+      get
+      {
+        return x;
+      }
+      set
+      {
+        x = value;
+      }
+    }
+
+    public double g
+    {
+      get
+      {
+        return y;
+      }
+      set
+      {
+        y = value;
+      }
+    }
+
+    public double b
+    {
+      get
+      {
+        return z;
+      }
+      set
+      {
+        z = value;
+      }
+    }
+    #endregion
+
     public static Vector3 operator +(Vector3 a, Vector3 b) => new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);
 
     public static Vector3 operator -(Vector3 a, Vector3 b) => new Vector3(a.x - b.x, a.y - b.y, a.z - b.z);
