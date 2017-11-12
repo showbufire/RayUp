@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Geometry\Sphere.cs" />
+    <Compile Include="Geometry\GeometricObject.cs" />
+    <Compile Include="Geometry\Plane.cs" />
     <Compile Include="Ray.cs" />
     <Compile Include="RayUp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
