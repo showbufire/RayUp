@@ -7,8 +7,10 @@ namespace RayUp
   public class World
   {
     private const string OUTPUT_FILENAME = "output.pnm";
+    private const int NUM_SAMPLES = 25;
+    private const int NUM_SETS = 100;
 
-    public ViewPlane vp = new ViewPlane();
+    public ViewPlane vp;
     public Sphere sphere;
     public Vector3 bgColor = Constants.BLACK;
 
@@ -17,9 +19,11 @@ namespace RayUp
 
     public void Build()
     {
+      vp = new ViewPlane();
       vp.hres = 200;
       vp.vres = 200;
       vp.s = 1.0;
+      vp.sampler = new Sampler.Jittered(NUM_SETS, NUM_SAMPLES);
 
       tracer = new Tracer.MultipleObjects(this);
 
@@ -73,10 +77,16 @@ namespace RayUp
         {
           for (int c = vp.hres - 1; c >= 0; c--)
           {
-            double x = vp.s * (c - 0.5 * (vp.hres - 1.0));
-            double y = vp.s * (r - 0.5 * (vp.vres - 1.0));
-            ray.orig = new Vector3(x, y, zw);
-            Vector3 pixelColor = tracer.TraceRay(ray);
+            Vector3 pixelColor = new Vector3();
+            for (int k = 0; k < NUM_SAMPLES; k++)
+            {
+              Vector2 sp = vp.sampler.SampleUnitSquare();
+              double x = vp.s * (c - 0.5 * vp.hres + sp.x);
+              double y = vp.s * (r - 0.5 * vp.vres + sp.y);
+              ray.orig = new Vector3(x, y, zw);
+              pixelColor += tracer.TraceRay(ray);
+            }
+            pixelColor /= NUM_SAMPLES;
             outputFile.WriteLine("{0} {1} {2}", pixelColor.r, pixelColor.g, pixelColor.b);
           }
         }

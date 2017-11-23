@@ -27,6 +27,7 @@ namespace RayUp.Sampler
 
     public Vector2 SampleUnitSquare()
     {
+      rand = new Random();
       if (count == 0)
       {
         jump = rand.Next() % numSets;
