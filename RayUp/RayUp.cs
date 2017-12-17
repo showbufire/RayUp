@@ -11,7 +11,7 @@ namespace RayUp
       stopwatch.Start();
       World w = new World();
       w.Build();
-      w.RenderScene();
+      w.camera.RenderScene(w);
       stopwatch.Stop();
       Console.WriteLine("Time taken: " + stopwatch.ElapsedMilliseconds);
     }

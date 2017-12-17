@@ -9,5 +9,6 @@
     //    public double inv_gamma;
 
     public Sampler.Sampler sampler;
+    public int numSamples;
   }
 }
